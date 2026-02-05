@@ -19,20 +19,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Ruta de bienvenida
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'API de autenticación JWT con Node.js, Express y MongoDB',
-    version: '1.0.0',
-    endpoints: {
-      auth: '/api/auth',
-      tasks: '/api/tasks'
-    }
-  });
-});
+// Servir archivos estáticos
+app.use(express.static('public'));
 
-// Montar rutas
+// Importar rutas de vistas
+const viewRoutes = require('./routes/views');
+
+// Montar rutas de vistas (ANTES de las rutas de API)
+app.use('/', viewRoutes);
+
+// Montar rutas de API
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 

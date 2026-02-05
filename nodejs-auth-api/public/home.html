@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .info {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .info h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .endpoints {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .endpoint {
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            color: #555;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .get {
+            background: #61affe;
+            color: white;
+        }
+
+        .post {
+            background: #49cc90;
+            color: white;
+        }
+
+        .patch {
+            background: #fca130;
+            color: white;
+        }
+
+        .delete {
+            background: #f93e3e;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="emoji">🚀</div>
+        <h1>Task Manager API</h1>
+        <p>API REST con autenticación JWT, MongoDB y arquitectura MVC</p>
+
+        <div class="buttons">
+            <a href="/login" class="btn btn-primary">Iniciar Sesión</a>
+            <a href="/register" class="btn btn-secondary">Registrarse</a>
+        </div>
+
+        <div class="info">
+            <h2>📌 Endpoints Disponibles</h2>
+            <div class="endpoints">
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span>/api/auth/register</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span>/api/auth/login</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span>/api/auth/me</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span>/api/tasks</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span>/api/tasks</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method patch">PATCH</span>
+                    <span>/api/tasks/:id</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method delete">DELETE</span>
+                    <span>/api/tasks/:id</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

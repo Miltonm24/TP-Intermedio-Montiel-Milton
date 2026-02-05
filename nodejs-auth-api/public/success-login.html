@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Exitoso - Task Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .welcome-message {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .user-info p {
+            color: #555;
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .user-info strong {
+            color: #333;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-logout {
+            background: white;
+            color: #f93e3e;
+            border: 2px solid #f93e3e;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .token-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #2e7d32;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <h1>¡Login Exitoso!</h1>
+        <p class="welcome-message">Bienvenido de nuevo</p>
+
+        <div class="user-info" id="userInfo">
+            <p><strong>Nombre:</strong> <span id="userName">Cargando...</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">Cargando...</span></p>
+        </div>
+
+        <div class="token-info">
+            🔐 Tu sesión está activa y segura
+        </div>
+
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">Ir al Inicio</a>
+            <button class="btn btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <script>
+        // Obtener información del usuario desde localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const token = localStorage.getItem('token');
+
+            // Si no hay token, redirigir al login
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Mostrar información del usuario
+            document.getElementById('userName').textContent = user.name || 'Usuario';
+            document.getElementById('userEmail').textContent = user.email || 'No disponible';
+        });
+
+        // Función para cerrar sesión
+        document.getElementById('btnLogout').addEventListener('click', () => {
+            // Confirmar antes de cerrar sesión
+            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                // Limpiar localStorage
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+
+                // Mostrar mensaje
+                alert('Sesión cerrada exitosamente');
+
+                // Redirigir al login
+                window.location.href = '/login';
+            }
+        });
+    </script>
+</body>
+
+</html>
